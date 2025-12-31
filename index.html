@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Joban! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Stage 1: Baby Photo */
+        .baby-stage {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .baby-photo-container {
+            background: white;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            display: inline-block;
+            position: relative;
+        }
+
+        .baby-photo-frame {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .baby-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .balloons-decoration {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            animation: balloonFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes balloonFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .click-hint {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ffd700;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        .baby-stage:hover {
+            transform: scale(1.05);
+        }
+
+        /* Stage 2: Teddy Bear */
+        .teddy-stage {
+            cursor: pointer;
+            animation: teddyAppear 1s ease-out;
+        }
+
+        @keyframes teddyAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .teddy-container {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+            display: inline-block;
+            border: 5px solid #d4af37;
+        }
+
+        .teddy-image {
+            width: 350px;
+            height: auto;
+            animation: teddyWave 2s ease-in-out infinite;
+        }
+
+        @keyframes teddyWave {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .teddy-message {
+            margin-top: 30px;
+            font-size: 28px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+
+        .teddy-stage:hover .teddy-container {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Stage 3: Birthday Card */
+        .birthday-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 4px solid #d4af37;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.7),
+                        inset 0 1px 0 rgba(212, 175, 55, 0.3);
+            max-width: 700px;
+            animation: cardAppear 1.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: rotateY(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0deg);
+            }
+        }
+
+        .birthday-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        h1 {
+            font-size: 52px;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: goldShimmer 3s infinite;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes goldShimmer {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.3);
+            }
+        }
+
+        .name {
+            font-size: 72px;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 25%, #d4af37 50%, #ffed4e 75%, #ffd700 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+            animation: luxuryGlow 3s infinite;
+            letter-spacing: 5px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+        }
+
+        @keyframes luxuryGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #d4af37;
+            font-style: italic;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #e0e0e0;
+            line-height: 1.9;
+            margin: 30px 0;
+            font-family: 'Georgia', serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icons-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .luxury-icon {
+            font-size: 60px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.5));
+        }
+
+        .luxury-icon:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .luxury-icon:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .diamonds {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .diamond {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(135deg, #fff 0%, #d4af37 50%, #fff 100%);
+            transform: rotate(45deg);
+            animation: sparkle 4s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+        }
+
+        .diamond:nth-child(1) { left: 15%; top: 20%; animation-delay: 0s; }
+        .diamond:nth-child(2) { left: 85%; top: 30%; animation-delay: 1s; }
+        .diamond:nth-child(3) { left: 25%; top: 70%; animation-delay: 2s; }
+        .diamond:nth-child(4) { left: 75%; top: 80%; animation-delay: 1.5s; }
+        .diamond:nth-child(5) { left: 50%; top: 15%; animation-delay: 0.5s; }
+        .diamond:nth-child(6) { left: 10%; top: 50%; animation-delay: 2.5s; }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: rotate(45deg) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(45deg) scale(1.5);
+            }
+        }
+
+        .gold-confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 4s linear infinite;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+
+        .wish-button {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            color: #1a1a1a;
+            border: 2px solid #ffd700;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .wish-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .cadillac {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: carDrive 3s ease-in-out infinite;
+        }
+
+        @keyframes carDrive {
+            0%, 100% {
+                transform: translateX(-20px);
+            }
+            50% {
+                transform: translateX(20px);
+            }
+        }
+
+        /* Cake Cutting Scene */
+        .cake-scene {
+            animation: cakeAppear 1.5s ease-out;
+            text-align: center;
+        }
+
+        @keyframes cakeAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .luxury-cake-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 4px solid #d4af37;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.7),
+                        inset 0 1px 0 rgba(212, 175, 55, 0.3);
+            max-width: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .luxury-cake-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        .cake-title {
+            font-size: 48px;
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cake-display {
+            font-size: 180px;
+            margin: 30px 0;
+            animation: cakeBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.6));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .cake-display:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes cakeBounce {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        .cake-cut {
+            animation: cakeCut 1s ease-out forwards;
+        }
+
+        @keyframes cakeCut {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+            100% {
+                transform: scale(0) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .cake-slice {
+            font-size: 100px;
+            position: fixed;
+            animation: sliceFly 2s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes sliceFly {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .knife-cut {
+            font-size: 80px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            animation: knifeCut 0.5s ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes knifeCut {
+            0% {
+                transform: translate(-200%, -200%) rotate(-45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration-text {
+            font-size: 48px;
+            color: #ffd700;
+            margin: 30px 0;
+            animation: celebrate 1s ease-in-out;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes celebrate {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .luxury-items {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .luxury-item {
+            font-size: 50px;
+            animation: itemFloat 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.5));
+        }
+
+        .luxury-item:nth-child(1) { animation-delay: 0s; }
+        .luxury-item:nth-child(2) { animation-delay: 0.3s; }
+        .luxury-item:nth-child(3) { animation-delay: 0.6s; }
+        .luxury-item:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes itemFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+        }
+
+        .cake-message {
+            font-size: 24px;
+            color: #d4af37;
+            margin: 20px 0;
+            font-family: 'Georgia', serif;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .cake-wish {
+            font-size: 20px;
+            color: #e0e0e0;
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .back-button {
+            background: linear-gradient(135deg, #555 0%, #333 100%);
+            color: #d4af37;
+            border: 2px solid #d4af37;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+            color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        .champagne-pop {
+            position: fixed;
+            font-size: 60px;
+            animation: champagneFly 2s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes champagneFly {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-500px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="diamonds">
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+    </div>
+
+    <div class="container">
+        <!-- Stage 1: Baby Photo -->
+        <div class="baby-stage" id="babyStage" onclick="showTeddy()">
+            <div class="baby-photo-container">
+                <div class="balloons-decoration">🎈🎈🎈</div>
+                <div class="baby-photo-frame">
+                    <img src="babyphoto.jpeg" 
+                         alt="Baby Photo" 
+                         class="baby-photo"
+                         id="babyPhoto">
+                </div>
+            </div>
+            <div class="click-hint">👆 Click to see the magic! ✨</div>
+        </div>
+
+        <!-- Stage 2: Teddy Bear -->
+        <div class="teddy-stage hidden" id="teddyStage" onclick="showBirthday()">
+            <div class="teddy-container">
+                <img src="baby.jpeg" width="200px" height="200px"
+                     alt="Teddy Bear" 
+                     class="teddy-image">
+                <div class="teddy-message">🎁 Click me ! 🎁</div>
+            </div>
+        </div>
+
+        <!-- Stage 3: Birthday Card -->
+        <div class="birthday-card hidden" id="birthdayCard">
+            <div class="cadillac">🚗</div>
+            <h1>Happy Birthday</h1>
+            <div class="name">JOBAN</div>
+            <div class="subtitle">Living the Dream Life</div>
+            
+            <div class="icons-row">
+                <div class="luxury-icon">🐎</div>
+                <div class="luxury-icon">🐕</div>
+                <div class="luxury-icon">💰</div>
+            </div>
+
+            <div class="message">
+                To the man who is now 21 years old! May your birthday be as luxurious as a Cadillac ride, 
+                as majestic as your favorite horses, and as loyal as your beloved dogs. 
+                Here's to another year of chasing dreams, living boldly, and enjoying the finest things in life!
+            </div>
+            
+            <div class="message">
+                🏆 Keep riding in style, keep winning, and keep living your best life! 🏆
+            </div>
+            
+            <div class="message" style="font-size: 18px; color: #d4af37; font-style: italic;">
+                "Stay blessed and happy always!"
+            </div>
+            
+            <button class="wish-button" onclick="celebrateMore()">🥂 Celebrate in Style 🥂</button>
+        </div>
+
+        <!-- Stage 4: Cake Cutting Scene -->
+        <div class="cake-scene hidden" id="cakeScene">
+            <div class="luxury-cake-container">
+                <div class="cake-title">🎊 Time to Cut the Cake! 🎊</div>
+                
+                <div class="cake-display" id="cakeDisplay" onclick="cutTheCake()">🎂</div>
+                
+                <div class="cake-message" id="cakeInstruction">
+                    "Click on the cake to cut it like a boss!"
+                </div>
+                
+                <div class="celebration-text hidden" id="celebrationText">
+                    🎉 Enjoy Your Special Day! 🎉
+                </div>
+                
+                <div class="luxury-items">
+                    <div class="luxury-item">🥂</div>
+                    <div class="luxury-item">💎</div>
+                    <div class="luxury-item">👑</div>
+                    <div class="luxury-item">🍾</div>
+                </div>
+                
+                <div class="cake-wish">
+                    May this year bring you endless success, luxury cars in your garage,
+                    champion horses in your stable, and loyal companions by your side.
+                    Live every day with millionaire smile and happiness! 🏆
+                </div>
+                
+                <div class="cake-message" style="font-size: 28px; margin-top: 30px;">
+                    🎉 Happy Birthday 🎉
+                </div>
+                
+                <button class="back-button" onclick="goBackToCard()">← Back to Card</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load the baby photo
+        window.addEventListener('DOMContentLoaded', function() {
+            const babyImg = document.getElementById('babyPhoto');
+            // This is a placeholder - you would replace with the actual image data
+            babyImg.src = 'babyphoto.jpeg';
+        });
+
+        function showTeddy() {
+            const babyStage = document.getElementById('babyStage');
+            const teddyStage = document.getElementById('teddyStage');
+            
+            babyStage.style.opacity = '0';
+            babyStage.style.transform = 'scale(0.8)';
+            babyStage.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                babyStage.classList.add('hidden');
+                teddyStage.classList.remove('hidden');
+            }, 500);
+        }
+
+        function showBirthday() {
+            const teddyStage = document.getElementById('teddyStage');
+            const card = document.getElementById('birthdayCard');
+            
+            teddyStage.style.opacity = '0';
+            teddyStage.style.transform = 'scale(0.5) rotate(180deg)';
+            teddyStage.style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                teddyStage.classList.add('hidden');
+                card.classList.remove('hidden');
+                createGoldConfetti();
+            }, 800);
+        }
+
+        function createGoldConfetti() {
+            const goldShades = ['#ffd700', '#d4af37', '#ffed4e', '#f4e4a6'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'gold-confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = goldShades[Math.floor(Math.random() * goldShades.length)];
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    confetti.style.width = (Math.random() * 10 + 8) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 8) + 'px';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 6000);
+                }, i * 20);
+            }
+        }
+
+        function celebrateMore() {
+            const card = document.getElementById('birthdayCard');
+            const cakeScene = document.getElementById('cakeScene');
+            
+            // Create champagne pop effect
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const champagne = document.createElement('div');
+                    champagne.className = 'champagne-pop';
+                    champagne.textContent = '🍾';
+                    champagne.style.left = (Math.random() * 80 + 10) + '%';
+                    champagne.style.top = '100%';
+                    document.body.appendChild(champagne);
+                    
+                    setTimeout(() => champagne.remove(), 2000);
+                }, i * 100);
+            }
+            
+            createGoldConfetti();
+            
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.8)';
+                card.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    card.classList.add('hidden');
+                    cakeScene.classList.remove('hidden');
+                    createGoldConfetti();
+                }, 800);
+            }, 1000);
+        }
+        
+        function goBackToCard() {
+            const card = document.getElementById('birthdayCard');
+            const cakeScene = document.getElementById('cakeScene');
+            const cakeDisplay = document.getElementById('cakeDisplay');
+            const celebrationText = document.getElementById('celebrationText');
+            const cakeInstruction = document.getElementById('cakeInstruction');
+            
+            cakeScene.style.opacity = '0';
+            cakeScene.style.transform = 'scale(0.8)';
+            cakeScene.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                cakeScene.classList.add('hidden');
+                card.classList.remove('hidden');
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+                
+                // Reset cake for next time
+                cakeDisplay.textContent = '🎂';
+                cakeDisplay.classList.remove('cake-cut');
+                celebrationText.classList.add('hidden');
+                cakeInstruction.classList.remove('hidden');
+            }, 500);
+        }
+
+        let cakeCutDone = false;
+
+        function cutTheCake() {
+            if (cakeCutDone) return;
+            cakeCutDone = true;
+
+            const cakeDisplay = document.getElementById('cakeDisplay');
+            const celebrationText = document.getElementById('celebrationText');
+            const cakeInstruction = document.getElementById('cakeInstruction');
+            
+            // Show knife cutting animation
+            const knife = document.createElement('div');
+            knife.className = 'knife-cut';
+            knife.textContent = '🔪';
+            cakeDisplay.parentElement.appendChild(knife);
+            
+            setTimeout(() => knife.remove(), 500);
+            
+            // Cut the cake after knife animation
+            setTimeout(() => {
+                cakeDisplay.classList.add('cake-cut');
+                
+                // Create cake slices flying out
+                const slicePositions = [
+                    { tx: '-300px', ty: '-200px' },
+                    { tx: '300px', ty: '-200px' },
+                    { tx: '-400px', ty: '100px' },
+                    { tx: '400px', ty: '100px' },
+                    { tx: '0px', ty: '-300px' },
+                    { tx: '-250px', ty: '200px' },
+                    { tx: '250px', ty: '200px' }
+                ];
+                
+                slicePositions.forEach((pos, index) => {
+                    setTimeout(() => {
+                        const slice = document.createElement('div');
+                        slice.className = 'cake-slice';
+                        slice.textContent = '🍰';
+                        slice.style.setProperty('--tx', pos.tx);
+                        slice.style.setProperty('--ty', pos.ty);
+                        
+                        const rect = cakeDisplay.getBoundingClientRect();
+                        slice.style.left = rect.left + rect.width / 2 + 'px';
+                        slice.style.top = rect.top + rect.height / 2 + 'px';
+                        
+                        document.body.appendChild(slice);
+                        
+                        setTimeout(() => slice.remove(), 2000);
+                    }, index * 100);
+                });
+                
+                // Show celebration message
+                setTimeout(() => {
+                    cakeInstruction.classList.add('hidden');
+                    celebrationText.classList.remove('hidden');
+                    createGoldConfetti();
+                    createGoldConfetti();
+                    
+                    // Pop champagne bottles
+                    for (let i = 0; i < 15; i++) {
+                        setTimeout(() => {
+                            const champagne = document.createElement('div');
+                            champagne.className = 'champagne-pop';
+                            champagne.textContent = '🍾';
+                            champagne.style.left = (Math.random() * 80 + 10) + '%';
+                            champagne.style.top = '100%';
+                            document.body.appendChild(champagne);
+                            
+                            setTimeout(() => champagne.remove(), 2000);
+                        }, i * 80);
+                    }
+                }, 700);
+                
+            }, 500);
+        }
+    </script>
+</body>
+</html>
